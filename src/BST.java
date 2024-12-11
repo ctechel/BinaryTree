@@ -47,16 +47,47 @@ public class BST {
      * @return true if val is in the tree, false otherwise
      */
     public boolean search(int val) {
-        // TODO: Complete the search function
-        return false;
+        return helpSearch(val, root);
+    }
+
+    public boolean helpSearch(int val, BSTNode node)
+    {
+        if (node == null)
+        {
+            return false;
+        }
+        if (val == node.getVal())
+        {
+            return true;
+        }
+        if (val < node.getVal())
+        {
+            return helpSearch(val, node.getLeft());
+        }
+        else
+        {
+            return helpSearch(val, node.getRight());
+        }
     }
 
     /**
      * @return ArrayList of BSTNodes in inorder
      */
     public ArrayList<BSTNode> getInorder() {
-        // TODO: Complete inorder traversal
-        return null;
+        ArrayList<BSTNode> done = new ArrayList<BSTNode>();
+        getInorderHelper(root, done);
+        return done;
+    }
+
+    public void getInorderHelper(BSTNode root, ArrayList<BSTNode> done)
+    {
+        if (root == null)
+        {
+            return;
+        }
+        getInorderHelper(root.getLeft(), done);
+        done.add(root);
+        getInorderHelper(root.getRight(), done);
     }
 
     /**
@@ -64,17 +95,43 @@ public class BST {
      */
     public ArrayList<BSTNode> getPreorder() {
         // TODO: Complete preorder traversal
-        return null;
+        ArrayList<BSTNode> done = new ArrayList<BSTNode>();
+        getPreorderHelper(root, done);
+        return done;
     }
+
+    public void getPreorderHelper(BSTNode root, ArrayList<BSTNode> done)
+    {
+        if (root == null)
+        {
+            return;
+        }
+        done.add(root);
+        getPreorderHelper(root.getLeft(), done);
+        getPreorderHelper(root.getRight(), done);
+    }
+
 
     /**
      * @return ArrayList of BSTNodes in postorder
      */
     public ArrayList<BSTNode> getPostorder() {
         // TODO: Complete postorder traversal
-        return null;
+        ArrayList<BSTNode> done = new ArrayList<BSTNode>();
+        getPostorderHelper(root, done);
+        return done;
     }
 
+    public void getPostorderHelper(BSTNode root, ArrayList<BSTNode> done)
+    {
+        if (root == null)
+        {
+            return;
+        }
+        getPostorderHelper(root.getLeft(), done);
+        getPostorderHelper(root.getRight(), done);
+        done.add(root);
+    }
     /**
      * Inserts the given integer value to the tree
      * if it does not already exist. Modifies the
@@ -83,6 +140,37 @@ public class BST {
      */
     public void insert(int val) {
         // TODO: Complete insert
+        insertHelper(val, root);
+    }
+
+    public void insertHelper(int val, BSTNode node)
+    {
+        if (val == node.getVal())
+        {
+            return;
+        }
+        if (val < node.getVal())
+        {
+            if (node.getLeft() == null)
+            {
+                node.setLeft(node);
+            }
+            else
+            {
+                insertHelper(val, node.getLeft());
+            }
+        }
+        else
+        {
+            if (node.getRight() == null)
+            {
+                node.setRight(node);
+            }
+            else
+            {
+                insertHelper(val, node.getRight());
+            }
+        }
     }
 
     /**
