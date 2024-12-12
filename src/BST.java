@@ -50,6 +50,7 @@ public class BST {
         return helpSearch(val, root);
     }
 
+    // Helper for Search
     public boolean helpSearch(int val, BSTNode node)
     {
         if (node == null)
@@ -79,12 +80,14 @@ public class BST {
         return done;
     }
 
+    // Helper for Inorder
     public void getInorderHelper(BSTNode root, ArrayList<BSTNode> done)
     {
         if (root == null)
         {
             return;
         }
+        // Left, Root, Right
         getInorderHelper(root.getLeft(), done);
         done.add(root);
         getInorderHelper(root.getRight(), done);
@@ -100,12 +103,14 @@ public class BST {
         return done;
     }
 
+    // Helper for Preorder
     public void getPreorderHelper(BSTNode root, ArrayList<BSTNode> done)
     {
         if (root == null)
         {
             return;
         }
+        // Root, Left, Right
         done.add(root);
         getPreorderHelper(root.getLeft(), done);
         getPreorderHelper(root.getRight(), done);
@@ -122,12 +127,14 @@ public class BST {
         return done;
     }
 
+    // Helper for Postorder
     public void getPostorderHelper(BSTNode root, ArrayList<BSTNode> done)
     {
         if (root == null)
         {
             return;
         }
+        // Left, Right, Root
         getPostorderHelper(root.getLeft(), done);
         getPostorderHelper(root.getRight(), done);
         done.add(root);
@@ -143,6 +150,7 @@ public class BST {
         insertHelper(val, root);
     }
 
+    // Helper for Insert
     public void insertHelper(int val, BSTNode node)
     {
         if (val == node.getVal())
