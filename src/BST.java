@@ -153,26 +153,33 @@ public class BST {
     // Helper for Insert
     public void insertHelper(int val, BSTNode node)
     {
+        // If the value already exists don't insert anything
         if (val == node.getVal())
         {
             return;
         }
+        // If the value is smaller move it to the left
         if (val < node.getVal())
         {
             if (node.getLeft() == null)
             {
-                node.setLeft(node);
+                node.setLeft(new BSTNode(val));
+                // Once it is set leave the helper function
+                return;
             }
             else
             {
                 insertHelper(val, node.getLeft());
             }
         }
+        // If the value is bigger move it to the right
         else
         {
             if (node.getRight() == null)
             {
-                node.setRight(node);
+                node.setRight(new BSTNode(val));
+                // Once it is set leave the helper function
+                return;
             }
             else
             {
